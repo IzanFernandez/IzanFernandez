@@ -1,6 +1,6 @@
-#Descripcion
+# Descripción
 
-Este repositorio tiene varios de los Scrips que he creado en Ubuntu
+Este repositorio tiene varios de los Scrips que he creado en Ubuntu, par diferentes utilidaded
 
 ## Scrips
 
