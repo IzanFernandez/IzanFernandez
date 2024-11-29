@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Crear un nuevo usuario con un directorio home
+useradd -m -s /bin/bash $1
+
+# Establecer una contraseña para el nuevo usuario
+echo "$1:$2" | chpasswd
+
+# Dar permisos de administrador al nuevo usuario (opcional)
+usermod -aG sudo $1
+
+# Crear directorios específicos para el usuario
+mkdir /home/$1/projects
+chmod 770 /home/$1/projects
+chown $1:$1 /home/$1/projects
