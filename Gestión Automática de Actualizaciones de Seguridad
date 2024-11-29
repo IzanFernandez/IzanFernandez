@@ -1,0 +1,8 @@
+#!/bin/bash
+# Actualizar repositorios y hacer las actualizaciones de seguridad
+apt update && apt upgrade -y
+apt dist-upgrade -y
+apt autoremove -y
+
+# Notificación por correo
+echo "Las actualizaciones de seguridad se han completado." | mail -s "Actualización de Seguridad" admin@empresa.com
