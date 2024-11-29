@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Archivo de log a analizar
+LOG_FILE="/var/log/auth.log"
+ERROR_PATTERN="Failed password"
+
+# Buscar fallos de inicio de sesión
+tail -n 100 $LOG_FILE | grep "$ERROR_PATTERN" > /tmp/login_attempts.txt
+
+# Si se encuentra algún fallo, enviar alerta por correo
+if [ -s /tmp/login_attempts.txt ]; then
+    cat /tmp/login_attempts.txt | mail -s "Alerta: Fallo de inicio de sesión" admin@empresa.com
+fi
