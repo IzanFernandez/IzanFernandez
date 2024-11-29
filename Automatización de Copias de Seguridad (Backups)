@@ -1,0 +1,14 @@
+#!/bin/bash
+# Directorio de origen
+SRC_DIR="/home/usuario/important_data"
+# Directorio de destino
+DEST_DIR="/mnt/backup"
+# Fecha para el nombre del archivo de respaldo
+DATE=$(date +%Y%m%d%H%M)
+BACKUP_FILE="$DEST_DIR/backup_$DATE.tar.gz"
+
+# Realizar la copia de seguridad usando tar
+tar -czf $BACKUP_FILE $SRC_DIR
+
+# Notificación por correo (requiere que el servidor tenga configurado un servicio de correo)
+echo "Backup realizado con éxito: $BACKUP_FILE" | mail -s "Copia de seguridad completada" admin@empresa.com
