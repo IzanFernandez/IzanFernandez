@@ -11,4 +11,4 @@ BACKUP_FILE="$DEST_DIR/backup_$DATE.tar.gz"
 tar -czf $BACKUP_FILE $SRC_DIR
 
 # Notificación por correo (requiere que el servidor tenga configurado un servicio de correo)
-echo "Backup realizado con éxito: $BACKUP_FILE" | mail -s "Copia de seguridad completada" admin@empresa.com
+echo "Backup realizado con éxito: $BACKUP_FILE" | mail -s "Copia de seguridad completada" admin@empresa.com 
