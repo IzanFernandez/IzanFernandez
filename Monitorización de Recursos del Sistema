@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Umbral de alerta para el uso de CPU y espacio en disco
+CPU_THRESHOLD=80
+DISK_THRESHOLD=90
+
+# Obtener el porcentaje de uso de la CPU
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+# Obtener el porcentaje de uso del disco
+DISK_USAGE=$(df / | grep / | awk '{ print $5 }' | sed 's/%//g')
+
+# Verificar si la CPU está por encima del umbral
+if [ $(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc) -eq 1 ]; then
+    echo "Alerta: El uso de la CPU es alto: $CPU_USAGE%" | mail -s "Alerta de CPU" admin@empresa.com
+fi
+
+# Verificar si el uso del disco es alto
+if [ $DISK_USAGE -gt $DISK_THRESHOLD ]; then
+    echo "Alerta: El uso del disco es alto: $DISK_USAGE%" | mail -s "Alerta de Disco" admin@empresa.com
+fi
